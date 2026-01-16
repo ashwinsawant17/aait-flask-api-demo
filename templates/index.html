@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Flask Render Demo</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+
+  <body>
+    <div class="card">
+      <h1>Flask Web Page</h1>
+      <p><b>Message:</b> {{ message }}</p>
+      <p><b>Server time:</b> {{ server_time }}</p>
+
+      <hr />
+
+      <h2>Try the API with a GET request</h2>
+      <p>
+        Hint: After clicking the link, try changing the name in the URL from Alex to something else!
+        <a href="/api/hello?name=Alex" target="_blank">/api/hello?name=Alex</a>
+      </p>
+
+      <h2>Try a POST request</h2>
+      <p>This page can also send a POST to <code>/api/echo</code>.</p>
+    
+      <input id="postTextInput" type="text">
+      <button onclick="sendPost()">Send POST</button>
+      
+      <pre id="output">(response appears here)</pre>
+
+      <h2>Try a POST request to check our API Key</h2>
+      <p>You can do this by sending a POST to <code>/api/secret-status</code>.</p>
+
+      <button onclick="sendAPIPost()">Send POST</button>
+      <pre id="output2">(response appears here)</pre>
+    </div>
+
+    <script>
+      async function sendPost() {
+        inputText = document.getElementById("postTextInput").textContent ?? "Try entering a message into the text box!";
+        const res = await fetch("/api/echo", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: inputText }),
+        });
+        const data = await res.json();
+        document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+      }
+
+      async function sendAPIPost() {
+        const res = await fetch("/api/secret-status", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({})
+        })
+        const data = await res.json();
+        document.getElementById("output2").textContent = JSON.stringify(data, null, 2);
+      }
+    </script>
+  </body>
+</html>

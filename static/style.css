@@ -1,0 +1,18 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+}
+
+.card {
+    max-width: 700px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+pre {
+    background: #f6f6f6;
+    padding: 12px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
