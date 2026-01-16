@@ -37,7 +37,7 @@
 
     <script>
       async function sendPost() {
-        inputText = document.getElementById("postTextInput").textContent ?? "Try entering a message into the text box!";
+        inputText = document.getElementById("postTextInput").value ?? "Try entering a message into the text box!";
         const res = await fetch("/api/echo", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
