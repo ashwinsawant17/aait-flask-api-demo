@@ -45,7 +45,7 @@ def api_echo():
 
 @app.post("/api/secret-status")
 def api_secret_status():
-    print("Entered API")
+    print("Entered API ")
     api_key = os.environ.get("DEMO_API_KEY")
 
     if not api_key:
